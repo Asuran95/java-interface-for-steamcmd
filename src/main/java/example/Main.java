@@ -12,10 +12,8 @@ public class Main {
 		//SteamCMD steamCmd = new SteamCMD(new listenerSteamCMD(), "/home/pendragon/teste/steam/steamcmd.sh");
 		SteamCMD steamCmd = new SteamCMD(new listenerSteamCMD());
 		
-		steamCmd.login("alp_intel", "rty23589");
-		/*
 		steamCmd.loginAnonymous();
-
+		
 		steamCmd.forceInstallDir("/home/pendragon/teste/cstrike1");
 
 		steamCmd.appUpdate(90);
@@ -26,9 +24,8 @@ public class Main {
 		
 		steamCmd.appUpdate(90, "-validate");
 
-		steamCmd.quit();*/
+		steamCmd.quit();
 	}
-
 }
 
 
@@ -45,7 +42,12 @@ class listenerSteamCMD implements SteamCMDListener {
 		System.out.print("Two-factor code:");
 		Scanner sc = new Scanner(System.in);
 		
-		return sc.nextLine();
+		String authCode = sc.nextLine();
+		
+		sc.close();
+		
+		return authCode;
+		
 	}
 
 	@Override

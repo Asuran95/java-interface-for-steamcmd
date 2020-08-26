@@ -160,9 +160,9 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write(loginCommand + "\n");
-        writer.flush();
+		writer.flush();
         
-        semaphore.acquire();
+		semaphore.acquire();
 	}
 	
 	public void loginAnonymous() throws InterruptedException, IOException {
@@ -173,9 +173,9 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write(loginCommand + "\n");
-        writer.flush();
+		writer.flush();
         
-        semaphore.acquire();
+		semaphore.acquire();
 	}
 	
 	public void forceInstallDir(String dir) throws InterruptedException, IOException {
@@ -186,9 +186,9 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write(installDirCommand + "\n");
-        writer.flush();
+		writer.flush();
         
-        semaphore.acquire();
+		semaphore.acquire();
 	}
 	
 	public void appUpdate(long appId) throws IOException, InterruptedException {
@@ -207,7 +207,7 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write(appUpdateCommand + "\n");
-        writer.flush();
+		writer.flush();
         
         semaphore.acquire();
 	}
@@ -220,9 +220,9 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write(appSetConfigCommand + "\n");
-        writer.flush();
+		writer.flush();
         
-        semaphore.acquire();
+		semaphore.acquire();
 	}
 	
 	public void quit() throws InterruptedException, IOException {
@@ -231,8 +231,8 @@ public class SteamCMD {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
 		
 		writer.write("quit" + "\n");
-        writer.flush();
+		writer.flush();
         
-        semaphore.acquire();
+		semaphore.acquire();
 	}	
 }

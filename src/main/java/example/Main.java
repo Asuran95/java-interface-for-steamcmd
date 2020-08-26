@@ -12,21 +12,22 @@ public class Main {
 
 		// SteamCMD steamCmd = new SteamCMD(new listenerSteamCMD(),
 		// "/home/pendragon/teste/steam/steamcmd.sh");
-		SteamCMD steamCmd = new SteamCMD(new listenerSteamCMD());
+		
+		try(SteamCMD steamCmd = new SteamCMD(new listenerSteamCMD())){
+			steamCmd.loginAnonymous();
 
-		steamCmd.loginAnonymous();
+			steamCmd.forceInstallDir("/home/pendragon/teste/cstrike1");
 
-		steamCmd.forceInstallDir("/home/pendragon/teste/cstrike1");
+			steamCmd.appUpdate(90);
 
-		steamCmd.appUpdate(90);
+			steamCmd.forceInstallDir("/home/pendragon/teste/tfc");
 
-		steamCmd.forceInstallDir("/home/pendragon/teste/tfc");
+			steamCmd.appSetConfig(90, "mod", "tfc");
 
-		steamCmd.appSetConfig(90, "mod", "tfc");
-
-		steamCmd.appUpdate(90, "-validate");
-
-		steamCmd.quit();
+			steamCmd.appUpdate(90, "-validate");
+			
+			//steamCmd.quit();
+		}
 	}
 }
 

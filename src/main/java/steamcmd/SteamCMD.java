@@ -1,6 +1,7 @@
 package steamcmd;
 
 import java.io.BufferedWriter;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,14 +19,11 @@ import org.rauschig.jarchivelib.ArchiverFactory;
 
 import com.pty4j.PtyProcess;
 
-public class SteamCMD {
+public class SteamCMD implements Closeable {
 
 	private PtyProcess pty;
-
 	private Semaphore semaphore = new Semaphore(1);
-
 	private List<SteamCMDListener> listeners = new ArrayList<>();
-
 	private String steamCmdLocal;
 
 	public SteamCMD() throws IOException, InterruptedException {
@@ -47,7 +45,7 @@ public class SteamCMD {
 		listeners.add(listener);
 		startSteamCmd();
 	}
-
+	
 	public void addListener(SteamCMDListener listener) {
 		listeners.add(listener);
 	}
@@ -183,5 +181,18 @@ public class SteamCMD {
 		writer.flush();
 
 		semaphore.acquire();
+		
+		pty.destroyForcibly();
+	}
+
+	@Override
+	public void close() throws IOException {
+		if(pty.isAlive()) {
+			try {
+				quit();
+			} catch (Exception e) {
+				throw new IOException(e);
+			}
+		}
 	}
 }

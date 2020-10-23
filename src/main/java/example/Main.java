@@ -49,7 +49,6 @@ class listenerSteamCMD implements SteamCMDListener {
 		sc.close();
 
 		return authCode;
-
 	}
 
 	@Override

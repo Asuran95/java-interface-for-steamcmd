@@ -127,7 +127,7 @@ public class SteamCMD implements Closeable {
 
 	public void forceInstallDir(String dir) throws InterruptedException, IOException {
 
-		String installDirCommand = "force_install_dir " + dir;
+		String installDirCommand = "force_install_dir " + "\"" + dir + "\"";
 
 		OutputStream stdin = pty.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(stdin));
